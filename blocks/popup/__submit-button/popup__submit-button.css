@@ -1,0 +1,21 @@
+.popup__submit-button {
+  width: 358px;
+  height: 50px;
+  background-image: url(../../../images/popup/popup-Submit\ -Button.svg);
+  object-fit: cover;
+  background-repeat: no-repeat;
+  margin: 48px 0 37px 0;
+}
+
+.popup__submit-button:hover {
+  opacity: 0.8;
+}
+
+
+@media screen and (min-width: 320px) and (max-width: 750px){
+  .popup__submit-button{  
+    background-image: url(../../../images/popup/popup-Submit\ -Button-Mobile.svg);
+    margin: 45px 0 25px 0;
+    width: 238px;
+  }
+}

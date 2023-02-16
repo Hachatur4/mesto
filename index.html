@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./pages/index.css" />
+    <title>Место</title>
+  </head>
+  <body class="page">
+    <header class="header">
+      <img class="header__logo" src="./images/logo-header.svg" alt="Логотип" />
+    </header>
+    <main class="content">
+      <section class="profile">
+        <div class="profile__content">
+          <img
+            class="profile__avatar"
+            src="./images/profile/profile__avatar.jpg"
+            alt="Изображение профиля"
+          />
+          <div class="profile__info">
+            <div class="profile__name-edit">
+              <h1 class="profile__name">Жак-Ив Кусто</h1>
+              <img
+                class="profile__edit-button"
+                src="./images/profile/profile__Edit-Button.svg"
+                alt="Кнопка редактировать"
+              />
+            </div>
+            <p class="profile__job">Иследователь океана</p>
+          </div>
+        </div>
+        <div class="profile__add-button"></div>
+      </section>
+      <section class="element">
+        <article class="card">
+          <img
+            class="card__image"
+            src="./images/block-cards/Аллея-баобабов.jpg"
+            alt="Изображение"
+          />
+          <div class="card__description">
+            <h2 class="card__title">Аллея баобабов</h2>
+            <img
+              class="card__like-button card__like-button_active"
+              src="./images/card__like-button.svg"
+              alt="Кнопка нравится"
+            />
+          </div>
+        </article>
+        <article class="card">
+          <img
+            class="card__image"
+            src="./images/block-cards/Гора-Фудзи.jpg"
+            alt="Изображение"
+          />
+          <div class="card__description">
+            <h2 class="card__title">Гора Фудзи</h2>
+            <img
+              class="card__like-button card__like-button_active"
+              src="./images/card__like-button.svg"
+              alt="Кнопка нравится"
+            />
+          </div>
+        </article>
+        <article class="card">
+          <img
+            class="card__image"
+            src="./images/block-cards/Берген.jpg"
+            alt="Изображение"
+          />
+          <div class="card__description">
+            <h2 class="card__title">Берген</h2>
+            <img
+              class="card__like-button card__like-button_active"
+              src="./images/card__like-button.svg"
+              alt="Кнопка нравится"
+            />
+          </div>
+        </article>
+        <article class="card">
+          <img
+            class="card__image"
+            src="./images/block-cards/Гриндельвальд.jpg"
+            alt="Изображение"
+          />
+          <div class="card__description">
+            <h2 class="card__title">Гриндельвальд</h2>
+            <img
+              class="card__like-button card__like-button_active"
+              src="./images/card__like-button.svg"
+              alt="Кнопка нравится"
+            />
+          </div>
+        </article>
+        <article class="card">
+          <img
+            class="card__image"
+            src="./images/block-cards/Ронда.jpg"
+            alt="Изображение"
+          />
+          <div class="card__description">
+            <h2 class="card__title">Ронда</h2>
+            <img
+              class="card__like-button card__like-button_active"
+              src="./images/card__like-button.svg"
+              alt="Кнопка нравится"
+            />
+          </div>
+        </article>
+        <article class="card">
+          <img
+            class="card__image"
+            src="./images/block-cards/Сайатама.jpg"
+            alt="Изображение"
+          />
+          <div class="card__description">
+            <h2 class="card__title">Сайатама</h2>
+            <img
+              class="card__like-button card__like-button_active"
+              src="./images/card__like-button.svg"
+              alt="Кнопка нравится"
+            />
+          </div>
+        </article>
+      </section>
+      <section class="popup">
+        <div class="popup__container">
+          <p class="popup__title">Редактировать профиль</p>
+          <input
+            type="text"
+            id="popup__name"
+            class="popup__input-name"
+          />
+          <input
+            type="text"
+            id="popup__job"
+            class="popup__input-job"
+          />
+          <div class="popup__submit-button"></div>
+          <img
+            class="popup__close-icon"
+            src="./images/popup/popup-close-icon.svg"
+            alt="Кнопка закрыть"
+          />
+        </div>
+      </section>
+    </main>
+    <footer class="footer">
+      <p class="footer__copyright">© 2020 Mesto Russia</p>
+    </footer>
+    <script src="scripts/script.js"></script>
+  </body>
+</html>

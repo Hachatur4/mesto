@@ -1,0 +1,21 @@
+.element{
+  width: 880px;
+  margin: 47px 0 0;
+  display: grid;
+  gap: 17px;
+  grid-template-columns: repeat(auto-fit, minmax(282px, 282px));
+  justify-content: center;
+}
+
+@media screen and (min-width: 650px) and (max-width: 950px) {
+  .element {
+    width: 600px;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 650px) {
+  .element {
+    width: 282px;
+    margin: 18px 0 0;
+  }
+}
