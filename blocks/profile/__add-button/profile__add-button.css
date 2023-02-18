@@ -9,7 +9,8 @@
   font: inherit;
   color: inherit;
   background-color: transparent;
-  border-radius: 0.2px;
+  border-radius: 2px;
+  cursor: pointer;
 }
 
 .profile__add-button:hover{

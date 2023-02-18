@@ -9,6 +9,7 @@
   background-color: transparent;
   background-image: url(../../../images/profile/profile__Edit-Button.svg);
   background-size: cover;
+  cursor: pointer;
 }
 
 .profile__edit-button:hover {
@@ -19,5 +20,6 @@
   .profile__edit-button {
     width: 18px;
     height: 18px;
+    margin-left: 10px;
   }
 }
