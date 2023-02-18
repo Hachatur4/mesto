@@ -2,8 +2,16 @@
   width: 32px;
   height: 32px;
   position: absolute;
-  bottom: 340px;
-  left: 440px;
+  bottom: 341px;
+  left: 437px;
+  background-image: url(../../../images/popup/popup-close-icon.svg);
+  background-size: cover;
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+
 }
 
 .popup__close-icon:hover {
@@ -14,7 +22,7 @@
   .popup__close-icon {
     width: 20px;
     height: 20px;
-    bottom: 340px;
+    bottom: 341px;
     left: 260px;
   }
 }

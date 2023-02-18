@@ -21,16 +21,12 @@
           <div class="profile__info">
             <div class="profile__name-edit">
               <h1 class="profile__name">Жак-Ив Кусто</h1>
-              <img
-                class="profile__edit-button"
-                src="./images/profile/profile__Edit-Button.svg"
-                alt="Кнопка редактировать"
-              />
+              <button type="button" class="profile__edit-button"></button>
             </div>
             <p class="profile__job">Иследователь океана</p>
           </div>
         </div>
-        <div class="profile__add-button"></div>
+        <button type="button" class="profile__add-button"></button>
       </section>
       <section class="element">
         <article class="card">
@@ -41,11 +37,10 @@
           />
           <div class="card__description">
             <h2 class="card__title">Аллея баобабов</h2>
-            <img
+            <button
+              type="button"
               class="card__like-button card__like-button_active"
-              src="./images/card__like-button.svg"
-              alt="Кнопка нравится"
-            />
+            ></button>
           </div>
         </article>
         <article class="card">
@@ -56,11 +51,10 @@
           />
           <div class="card__description">
             <h2 class="card__title">Гора Фудзи</h2>
-            <img
+            <button
+              type="button"
               class="card__like-button card__like-button_active"
-              src="./images/card__like-button.svg"
-              alt="Кнопка нравится"
-            />
+            ></button>
           </div>
         </article>
         <article class="card">
@@ -71,11 +65,10 @@
           />
           <div class="card__description">
             <h2 class="card__title">Берген</h2>
-            <img
+            <button
+              type="button"
               class="card__like-button card__like-button_active"
-              src="./images/card__like-button.svg"
-              alt="Кнопка нравится"
-            />
+            ></button>
           </div>
         </article>
         <article class="card">
@@ -86,11 +79,10 @@
           />
           <div class="card__description">
             <h2 class="card__title">Гриндельвальд</h2>
-            <img
+            <button
+              type="button"
               class="card__like-button card__like-button_active"
-              src="./images/card__like-button.svg"
-              alt="Кнопка нравится"
-            />
+            ></button>
           </div>
         </article>
         <article class="card">
@@ -101,11 +93,10 @@
           />
           <div class="card__description">
             <h2 class="card__title">Ронда</h2>
-            <img
+            <button
+              type="button"
               class="card__like-button card__like-button_active"
-              src="./images/card__like-button.svg"
-              alt="Кнопка нравится"
-            />
+            ></button>
           </div>
         </article>
         <article class="card">
@@ -116,39 +107,42 @@
           />
           <div class="card__description">
             <h2 class="card__title">Сайатама</h2>
-            <img
+            <button
+              type="button"
               class="card__like-button card__like-button_active"
-              src="./images/card__like-button.svg"
-              alt="Кнопка нравится"
-            />
+            ></button>
           </div>
         </article>
-      </section>
-      <section class="popup">
-        <div class="popup__container">
-          <p class="popup__title">Редактировать профиль</p>
-          <input
-            type="text"
-            id="popup__name"
-            class="popup__input-name"
-          />
-          <input
-            type="text"
-            id="popup__job"
-            class="popup__input-job"
-          />
-          <div class="popup__submit-button"></div>
-          <img
-            class="popup__close-icon"
-            src="./images/popup/popup-close-icon.svg"
-            alt="Кнопка закрыть"
-          />
-        </div>
       </section>
     </main>
     <footer class="footer">
       <p class="footer__copyright">© 2020 Mesto Russia</p>
     </footer>
+    <div class="popup">
+      <div class="popup__container">
+        <h3 class="popup__title">Редактировать профиль</h3>
+        <form name="form-profile" class="form-profile">
+          <input
+            type="text"
+            name="userName"
+            id="popup-name"
+            class="popup__input"
+            placeholder="Имя"
+            required
+          />
+          <input
+            type="text"
+            name="userJob"
+            id="popup-job"
+            class="popup__input"
+            placeholder="Сфера деятельности"
+            required
+          />
+          <button type="submit" class="popup__submit-button"></button>
+          <button type="button" class="popup__close-icon"></button>
+        </form>
+      </div>
+    </div>
     <script src="scripts/script.js"></script>
   </body>
 </html>
