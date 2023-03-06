@@ -4,6 +4,7 @@
   display: grid;
   gap: 20px;
   grid-template-columns: repeat(auto-fit, minmax(282px, 282px));
+  grid-auto-columns: 282px;
   justify-content: center;
 }
 

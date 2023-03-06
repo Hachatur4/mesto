@@ -28,92 +28,7 @@
         </div>
         <button type="button" class="profile__add-button"></button>
       </section>
-      <section class="element">
-        <article class="card">
-          <img
-            class="card__image"
-            src="./images/block-cards/Аллея-баобабов.jpg"
-            alt="Изображение"
-          />
-          <div class="card__description">
-            <h2 class="card__title">Аллея баобабов</h2>
-            <button
-              type="button"
-              class="card__like-button card__like-button_active"
-            ></button>
-          </div>
-        </article>
-        <article class="card">
-          <img
-            class="card__image"
-            src="./images/block-cards/Гора-Фудзи.jpg"
-            alt="Изображение"
-          />
-          <div class="card__description">
-            <h2 class="card__title">Гора Фудзи</h2>
-            <button
-              type="button"
-              class="card__like-button card__like-button_active"
-            ></button>
-          </div>
-        </article>
-        <article class="card">
-          <img
-            class="card__image"
-            src="./images/block-cards/Берген.jpg"
-            alt="Изображение"
-          />
-          <div class="card__description">
-            <h2 class="card__title">Берген</h2>
-            <button
-              type="button"
-              class="card__like-button card__like-button_active"
-            ></button>
-          </div>
-        </article>
-        <article class="card">
-          <img
-            class="card__image"
-            src="./images/block-cards/Гриндельвальд.jpg"
-            alt="Изображение"
-          />
-          <div class="card__description">
-            <h2 class="card__title">Гриндельвальд</h2>
-            <button
-              type="button"
-              class="card__like-button card__like-button_active"
-            ></button>
-          </div>
-        </article>
-        <article class="card">
-          <img
-            class="card__image"
-            src="./images/block-cards/Ронда.jpg"
-            alt="Изображение"
-          />
-          <div class="card__description">
-            <h2 class="card__title">Ронда</h2>
-            <button
-              type="button"
-              class="card__like-button card__like-button_active"
-            ></button>
-          </div>
-        </article>
-        <article class="card">
-          <img
-            class="card__image"
-            src="./images/block-cards/Сайатама.jpg"
-            alt="Изображение"
-          />
-          <div class="card__description">
-            <h2 class="card__title">Сайатама</h2>
-            <button
-              type="button"
-              class="card__like-button card__like-button_active"
-            ></button>
-          </div>
-        </article>
-      </section>
+      <section class="element"></section>
     </main>
     <footer class="footer">
       <p class="footer__copyright">© 2020 Mesto Russia</p>
@@ -143,6 +58,56 @@
         </form>
       </div>
     </div>
+    <div class="popup-card">
+      <div class="popup-card__container">
+        <h3 class="popup-card__title">Новое место</h3>
+        <form name="form-card" class="form-card">
+          <input
+            type="text"
+            name="CardName"
+            id="card-name"
+            class="form-card__input"
+            placeholder="Название"
+            required
+          />
+          <input
+            type="text"
+            name="CardLink"
+            id="card-link"
+            class="form-card__input"
+            placeholder="Ссылка на картинку"
+            required
+          />
+          <button type="submit" class="form-card__submit-button"></button>
+          <button type="button" class="form-card__close-icon"></button>
+        </form>
+      </div>
+    </div>
+    <div class="popup-image">
+      <div class="popup-image__container">
+        <img
+          class="popup-image__element"
+          src="./images/popup-image.jpg"
+          alt="Увеличенное изображение"
+        />
+        <p class="popup-image__title">Работает</p>
+        <button type="button" class="popup-image__close-icon"></button>
+      </div>
+    </div>
+    <template id="templateCard">
+      <article class="card">
+        <button type="button" class="card__delete"></button>
+        <img
+          class="card__image"
+          src="./images/block-cards/Аллея-баобабов.jpg"
+          alt="Изображение"
+        />
+        <div class="card__description">
+          <h2 class="card__title">Аллея баобабов</h2>
+          <button type="button" class="card__like-button"></button>
+        </div>
+      </article>
+    </template>
     <script src="scripts/script.js"></script>
   </body>
 </html>
