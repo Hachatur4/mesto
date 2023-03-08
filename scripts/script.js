@@ -9,12 +9,12 @@ const nameInput = formProfile.querySelector('#profile-name');
 const jobInput = formProfile.querySelector('#profile-job');
 
 const cardCreateOpen = document.querySelector('.profile__add-button');
-const popupCardOpen = document.querySelector('.popup_card');
+const popupCardOpen = document.querySelector('.popup-card');
 const cardClose = document.querySelector('.form-card__close-icon');
 const formCard = document.querySelector('.form-card');
 const cardName = document.querySelector('#card-name');
 const cardLink = document.querySelector('#card-link');
-const imagePopupOpen = document.querySelector('.popup_image');
+const imagePopupOpen = document.querySelector('.popup-image');
 const buttonClosePopupImage = document.querySelector('.popup-image__close-icon');
 const imagePopupclick = document.querySelector('.card__image');
 const cardPlace = document.querySelector('.element');
