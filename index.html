@@ -33,9 +33,10 @@
     <footer class="footer">
       <p class="footer__copyright">© 2020 Mesto Russia</p>
     </footer>
-    <div class="popup popup_open-profile">
+    <div class="popup">
       <div class="popup__container">
         <h3 class="popup__title">Редактировать профиль</h3>
+        <button type="button" class="popup__close-icon"></button>
         <form name="form-profile" class="form-profile">
           <input
             type="text"
@@ -54,13 +55,13 @@
             required
           />
           <button type="submit" class="form-profile__submit-button"></button>
-          <button type="button" class="form-profile__close-icon"></button>
         </form>
       </div>
     </div>
-    <div class="popup popup-card">
-      <div class="popup-card__container">
-        <h3 class="popup-card__title">Новое место</h3>
+    <div class="popup">
+      <div class="popup__container">
+        <h3 class="popup__title">Новое место</h3>
+        <button type="button" class="popup__close-icon"></button>
         <form name="form-card" class="form-card">
           <input
             type="text"
@@ -79,19 +80,18 @@
             required
           />
           <button type="submit" class="form-card__submit-button"></button>
-          <button type="button" class="form-card__close-icon"></button>
         </form>
       </div>
     </div>
-    <div class="popup popup-image">
-      <div class="popup-image__container">
+    <div class="popup">
+      <div class="popup__container-image">
         <img
-          class="popup-image__element"
+          class="popup__element-image"
           src="./images/popup-image.jpg"
           alt="Увеличенное изображение"
         />
-        <p class="popup-image__title">Работает</p>
-        <button type="button" class="popup-image__close-icon"></button>
+        <p class="popup__title-image">Работает</p>
+        <button type="button" class="popup__close-icon"></button>
       </div>
     </div>
     <template id="templateCard">
@@ -108,6 +108,7 @@
         </div>
       </article>
     </template>
+    <script src="scripts/cards.js"></script>
     <script src="scripts/script.js"></script>
   </body>
 </html>
