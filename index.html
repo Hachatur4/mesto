@@ -37,24 +37,41 @@
       <div class="popup__container">
         <h3 class="popup__title">Редактировать профиль</h3>
         <button type="button" class="popup__close-icon"></button>
-        <form name="form-profile" class="form-profile">
-          <input
-            type="text"
-            name="profileName"
-            id="profile-name"
-            class="form-profile__input"
-            placeholder="Имя"
-            required
-          />
-          <input
-            type="text"
-            name="profileJob"
-            id="profile-job"
-            class="form-profile__input"
-            placeholder="Сфера деятельности"
-            required
-          />
-          <button type="submit" class="form-profile__submit-button"></button>
+        <form name="form-profile" class="form form-profile" novalidate>
+          <fieldset class="form__set">
+            <label class="form__field">
+              <input
+                type="text"
+                name="profileName"
+                id="username-input"
+                class="form__input form-profile__input"
+                placeholder="Имя"
+                minlength="2"
+                maxlength="40"
+                required
+              />
+              <span class="form__input-error username-input-error"></span>
+            </label>
+            <label class="form__field">
+              <input
+                type="text"
+                name="profileJob"
+                id="job-input"
+                class="form__input form-profile__input"
+                placeholder="Сфера деятельности"
+                minlength="2"
+                maxlength="200"
+                required
+              />
+              <span class="form__input-error job-input-error"></span>
+            </label>
+            <button
+              type="submit"
+              class="form__submit-button"
+            >
+              Сохранить
+            </button>
+          </fieldset>
         </form>
       </div>
     </div>
@@ -62,24 +79,39 @@
       <div class="popup__container">
         <h3 class="popup__title">Новое место</h3>
         <button type="button" class="popup__close-icon"></button>
-        <form name="form-card" class="form-card">
-          <input
-            type="text"
-            name="CardName"
-            id="card-name"
-            class="form-card__input"
-            placeholder="Название"
-            required
-          />
-          <input
-            type="text"
-            name="CardLink"
-            id="card-link"
-            class="form-card__input"
-            placeholder="Ссылка на картинку"
-            required
-          />
-          <button type="submit" class="form-card__submit-button"></button>
+        <form name="form-card" class="form form-card" novalidate>
+          <fieldset class="form__set">
+            <label class="form__field">
+              <input
+                type="text"
+                name="cardName"
+                id="name-input"
+                class="form__input form-card__input"
+                placeholder="Название"
+                minlength="2"
+                maxlength="30"
+                required
+              />
+              <span class="form__input-error name-input-error"></span>
+            </label>
+            <label class="form__field">
+              <input
+                type="url"
+                name="CardLink"
+                id="link-input"
+                class="form__input form-card__input"
+                placeholder="Ссылка на картинку"
+                required
+              />
+              <span class="form__input-error link-input-error"></span>
+            </label>
+            <button
+              type="submit"
+              class="form__submit-button"
+            >
+              Создать
+            </button>
+          </fieldset>
         </form>
       </div>
     </div>
@@ -109,6 +141,7 @@
       </article>
     </template>
     <script src="scripts/cards.js"></script>
+    <script src="scripts/validate.js"></script>
     <script src="scripts/script.js"></script>
   </body>
 </html>

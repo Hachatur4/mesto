@@ -5,16 +5,16 @@ const profileJob = document.querySelector('.profile__job');
 const formProfile = document.querySelector('.form-profile');
 const popupProfileOpen = formProfile.closest('.popup');
 const popupProfileClose = popupProfileOpen.querySelector('.popup__close-icon');
-const nameInput = formProfile.querySelector('#profile-name');
-const jobInput = formProfile.querySelector('#profile-job');
+const nameInput = formProfile.querySelector('#username-input');
+const jobInput = formProfile.querySelector('#job-input');
 
 
 const formCard = document.querySelector('.form-card');
 const popupCardOpen = formCard.closest('.popup');
 const popupCardClose = popupCardOpen.querySelector('.popup__close-icon');
 const popupCardButton = document.querySelector('.profile__add-button');
-const cardName = document.querySelector('#card-name');
-const cardLink = document.querySelector('#card-link');
+const cardName = document.querySelector('#name-input');
+const cardLink = document.querySelector('#link-input');
 
 const imagePopupclick = document.querySelector('.card__image');
 const cardPlace = document.querySelector('.element');
@@ -27,10 +27,12 @@ const popupImageClose = popupImageOpen.querySelector('.popup__close-icon');
 
 function openForm (item) {
   item.classList.add('popup_opened');
+  document.addEventListener('keydown', closeFormKey);
 }
 
 function closeForm (item) {
   item.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closeFormKey);
 }
 
 function handleFormSubmit (evt) {
@@ -97,6 +99,21 @@ function getCard (evt) {
   closeForm(popupCardOpen);
 }
 
+function closeFormKey (evt) {
+  if (evt.key === 'Escape') {
+    closeForm(popupProfileOpen);
+    closeForm(popupCardOpen);
+    closeForm(popupImageOpen);
+  }
+};
+
+function closeFormOverlayClick (evt){
+  if (evt.target.classList.contains('popup')){
+    closeForm(popupProfileOpen);
+    closeForm(popupImageOpen);
+    closeForm(popupCardOpen);
+  }
+}
 
 popupProfileButton.addEventListener('click', fillProfileFormField);
 popupCardButton.addEventListener('click', clearFormFieldCard);
@@ -107,3 +124,4 @@ formCard.addEventListener('submit', getCard);
 popupImageClose.addEventListener('click', ()=> closeForm(popupImageOpen));
 popupProfileClose.addEventListener('click', ()=> closeForm(popupProfileOpen));
 popupCardClose.addEventListener('click', ()=> closeForm(popupCardOpen));
+document.addEventListener('click', closeFormOverlayClick)
