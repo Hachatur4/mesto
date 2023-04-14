@@ -1,48 +1,7 @@
-import {deleteCard, openPopup, popupImageOpen, popupImage, popupImageTitle} from "./script.js"
+import {openPopup, popupImageOpen, popupImage, popupImageTitle} from "./utils.js"
+import initialCards from "./arrayCards.js"
 
-
-export const initialCards = [ 
-
-  { 
-    name: 'Архыз', 
-    alt: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg' 
-  }, 
-
-  { 
-    name: 'Челябинская область', 
-    alt: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg' 
-  }, 
-
-  { 
-    name: 'Иваново', 
-    alt: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg' 
-  }, 
-
-  { 
-    name: 'Камчатка', 
-    alt: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg' 
-  }, 
-
-  { 
-    name: 'Холмогорский район', 
-    alt: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg' 
-  }, 
-
-  { 
-    name: 'Байкал', 
-    alt: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg' 
-  } 
-]; 
-
-export const objCard = Object.assign({}, initialCards);
-
- export class Card {
+class Card {
   constructor (item) {
     this._title = item.name;
     this._alt = item.alt;
@@ -81,6 +40,12 @@ export const objCard = Object.assign({}, initialCards);
     evt.target.classList.toggle('card__like-button_active');
   }
 
+  _deleteCard (event){
+    const button = event.target
+    const cardDelete = button.closest('.card');
+    cardDelete.remove()
+  };
+  
   _setEventListeners() {
     this._element.querySelector('.card__image').addEventListener('click', () => {
       this._handleOpenPopup()
@@ -90,6 +55,8 @@ export const objCard = Object.assign({}, initialCards);
       this._cardLike(evt)
     });
 
-    this._element.querySelector('.card__delete').addEventListener('click', deleteCard);
+    this._element.querySelector('.card__delete').addEventListener('click', this._deleteCard);
   }
 };
+
+export default Card;
