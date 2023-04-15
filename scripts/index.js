@@ -21,10 +21,9 @@ const popupCardClose = popupCardOpen.querySelector('.popup__close-icon');
 const popupCardButton = document.querySelector('.profile__add-button');
 const inputNameFormAddNewCard = document.querySelector('#name-input');
 const inputLinkFormAddNewCard = document.querySelector('#link-input');
-
 const popupImageClose = popupImageOpen.querySelector('.popup__close-icon');
 
-const ValidationSelector = {
+const validationSelector = {
   formSet: '.form__set',
   inputSelector: '.form__input',
   submitButtonSelector: '.form__submit-button',
@@ -33,17 +32,15 @@ const ValidationSelector = {
   errorClass: 'form__input-error_active',
 }
 
-function validation (ValidationSelector) {
-  const  formCardValidation = new FormValidator(ValidationSelector, '.form-card');
-  const  formProfileValidation = new FormValidator(ValidationSelector, '.form-profile');
-  const formCardValidationAvtive = formCardValidation.enableValidation();
-  const formProfileValidationActive = formProfileValidation.enableValidation();
+const  formCardValidation = new FormValidator(validationSelector, '.form-card');
+const  formProfileValidation = new FormValidator(validationSelector, '.form-profile');
 
+function validation () {
+  formCardValidation.enableValidation();
+  formProfileValidation.enableValidation();
 };
 
-validation (ValidationSelector);
-
-
+validation (validationSelector);
 
 
 function closePopup (item) {
@@ -65,21 +62,16 @@ function fillProfileFormField () {
 }
 
 
-
-const newCardButtonValidation = new FormValidator(ValidationSelector, '.form-card');
-function popupCardButtonValidate (){
-  if (inputNameFormAddNewCard.value === '' && inputLinkFormAddNewCard.value === ''){
-    newCardButtonValidation.cardButtonValidation();
-  };
-};
-
 const objCard = Object.assign({}, initialCards);
 
-function renderCard (objCard) {
-  const card = new Card(objCard);
-  const cardElement = card.generateCard();
-  cardPlace.prepend(cardElement);
-};
+function createCard(objCard){
+  const newCard = new Card(objCard, '.templateCard');
+  return newCard.generateCard()
+}
+
+function renderCard(objCard){
+  cardPlace.prepend(createCard(objCard))
+}
 
 initialCards.forEach(renderCard);
 
@@ -91,7 +83,7 @@ function getCard (evt) {
     link: inputLinkFormAddNewCard.value
   }
   evt.target.reset();
-  popupCardButtonValidate();
+  formCardValidation.cardButtonValidation();
   renderCard(card);
   closePopup(popupCardOpen);
 }
@@ -113,8 +105,7 @@ function closeFormOverlayClick (evt){
 function openingAndContentsOfTheProfileField () {
   fillProfileFormField();
   openPopup(popupProfileOpen);
-  const clearInputErrorProfile = new FormValidator(ValidationSelector, '.form-profile');
-  clearInputErrorProfile.clearInputError();
+  formProfileValidation.clearInputError();
 }
 
 popupProfileButton.addEventListener('click', openingAndContentsOfTheProfileField);

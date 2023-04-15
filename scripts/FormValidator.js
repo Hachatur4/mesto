@@ -9,9 +9,9 @@ class FormValidator {
     this._inputErrorClass = data.inputErrorClass;
     this._errorClass = data.errorClass;
     this._formSelector = form;
-    this._formElement = document.querySelector(form);
+    this._formElement = document.querySelector(this._formSelector);
     this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
-    this._buttonElement = document.querySelector(form).querySelector('.form__submit-button');
+    this._buttonElement = document.querySelector(form).querySelector(this._submitButtonSelector);
   }
 
   _showInputError(inputElement, errorMessage) {
@@ -53,7 +53,7 @@ class FormValidator {
   };
 
   enableValidation() {
-    const formList = Array.from(document.querySelectorAll(this._formSelector));
+    const formList = Array.from(document.querySelector(this._formSelector));
     formList.forEach((formElement) => {
       this._formElement.addEventListener('submit', function (evt) {
         evt.preventDefault();
@@ -83,8 +83,13 @@ class FormValidator {
   };
 
   cardButtonValidation(){
-    this._buttonElement.classList.add(this._inactiveButtonClass);
-    this._buttonElement.setAttribute('disabled', '');
+    this._inputList.forEach((inputElement) => {
+      if (inputElement.value === ''){
+        this._buttonElement.classList.add(this._inactiveButtonClass);
+        this._buttonElement.setAttribute('disabled', '');
+      }
+    });
+    
   };
 };
 

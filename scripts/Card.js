@@ -2,15 +2,16 @@ import {openPopup, popupImageOpen, popupImage, popupImageTitle} from "./utils.js
 import initialCards from "./arrayCards.js"
 
 class Card {
-  constructor (item) {
+  constructor (item, templateElement) {
     this._title = item.name;
     this._alt = item.alt;
     this._image = item.link;
+    this._templateElement = templateElement
   }
 
   _getTemplate() {
     const cardElement = document
-      .querySelector('#templateCard')
+      .querySelector(this._templateElement)
       .content
       .querySelector('.card')
       .cloneNode(true);
