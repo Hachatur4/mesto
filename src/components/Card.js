@@ -1,12 +1,11 @@
-import {openPopup, popupImageOpen, popupImage, popupImageTitle} from "./utils.js"
-import initialCards from "./arrayCards.js"
 
 class Card {
-  constructor (item, templateElement) {
+  constructor (item, {handleCardClick, templateElement}) {
     this._title = item.name;
     this._alt = item.alt;
     this._image = item.link;
-    this._templateElement = templateElement
+    this._handleCardClick = handleCardClick;
+    this._templateElement = templateElement;
   }
 
   _getTemplate() {
@@ -19,6 +18,7 @@ class Card {
     return cardElement;
   }
 
+
   generateCard() {
     this._element = this._getTemplate();
     this._setEventListeners();
@@ -27,14 +27,6 @@ class Card {
     this._element.querySelector('.card__image').src = this._image; /*`url(${this._image})`;*/
 
     return this._element; 
-  }
-
-  _handleOpenPopup() {
-    openPopup(popupImageOpen);
-
-    popupImage.src = this._image;
-    popupImage.alt = this._alt;
-    popupImageTitle.textContent = this._title;
   }
 
   _cardLike(evt) {
@@ -49,7 +41,7 @@ class Card {
   
   _setEventListeners() {
     this._element.querySelector('.card__image').addEventListener('click', () => {
-      this._handleOpenPopup()
+      this._handleCardClick(this._element);
     });
 
     this._element.querySelector('.card__like-button').addEventListener('click', (evt) => {

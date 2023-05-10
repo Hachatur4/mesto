@@ -38,7 +38,9 @@ class FormValidator {
   
   clearInputError() {
     this._inputList.forEach((inputElement) => {
-        this._checkInputValidity(inputElement);
+      for (let i = 0; i > 0 ;){
+        return this._checkInputValidity(inputElement);
+      }
     });
   }
 

@@ -3,27 +3,26 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./pages/index.css" />
     <title>Место</title>
   </head>
   <body class="page">
     <header class="header">
-      <img class="header__logo" src="./images/logo-header.svg" alt="Логотип" />
+      <img class="header__logo" src="<%=require('./images/logo-header.svg')%>" alt="Логотип" />
     </header>
     <main class="content">
       <section class="profile">
         <div class="profile__content">
           <img
             class="profile__avatar"
-            src="./images/profile/profile__avatar.jpg"
+            src="<%=require('./images/profile/profile__avatar.jpg')%>"
             alt="Изображение профиля"
           />
           <div class="profile__info">
             <div class="profile__name-edit">
-              <h1 class="profile__name">Жак-Ив Кусто</h1>
+              <h1 class="profile-content profile__name">Жак-Ив Кусто</h1>
               <button type="button" class="profile__edit-button"></button>
             </div>
-            <p class="profile__job">Иследователь океана</p>
+            <p class="profile-content profile__job">Иследователь океана</p>
           </div>
         </div>
         <button type="button" class="profile__add-button"></button>
@@ -119,7 +118,7 @@
       <div class="popup__container-image">
         <img
           class="popup__element-image"
-          src="./images/popup-image.jpg"
+          src="<%=require('./images/popup-image.jpg')%>"
           alt="Увеличенное изображение"
         />
         <p class="popup__title-image">Работает</p>
@@ -131,7 +130,7 @@
         <button type="button" class="card__delete"></button>
         <img
           class="card__image"
-          src="./images/block-cards/Аллея-баобабов.jpg"
+          src="<%=require('./images/popup-image.jpg')%>"
           alt="Изображение"
         />
         <div class="card__description">
@@ -140,6 +139,6 @@
         </div>
       </article>
     </template>
-    <script type="module" src="scripts/index.js"></script>
+    <script type="module" src="./pages/index.js"></script>
   </body>
 </html>
