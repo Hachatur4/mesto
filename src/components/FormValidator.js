@@ -3,7 +3,6 @@ class FormValidator {
   constructor(data, form) {
     this._formSet = data.formSet;
     this._inputSelector = data.inputSelector;
-    this._allInputSelector = document.querySelectorAll(data.inputSelector);
     this._submitButtonSelector = data.submitButtonSelector;
     this._inactiveButtonClass = data.inactiveButtonClass;
     this._inputErrorClass = data.inputErrorClass;
@@ -38,9 +37,7 @@ class FormValidator {
   
   clearInputError() {
     this._inputList.forEach((inputElement) => {
-      for (let i = 0; i > 0 ;){
-        return this._checkInputValidity(inputElement);
-      }
+      this._hideInputError(inputElement);
     });
   }
 
@@ -55,18 +52,11 @@ class FormValidator {
   };
 
   enableValidation() {
-    const formList = Array.from(document.querySelector(this._formSelector));
-    formList.forEach((formElement) => {
-      this._formElement.addEventListener('submit', function (evt) {
-        evt.preventDefault();
-      });
-      
-      const fieldsetList = Array.from(this._formElement.querySelectorAll(this._formSet));
-  
-      fieldsetList.forEach((fieldSet) => {
-      this._setEventListeners(fieldSet);
-      });
+    this._formElement.addEventListener('submit', function (evt) {
+      evt.preventDefault();
     });
+      
+    this._setEventListeners();
   };
 
   _hasInvalidInput() {
