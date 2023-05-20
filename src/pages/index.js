@@ -30,7 +30,6 @@ const createNewCard = (item) => {
     item,
     handleCardClick: (name, link)=>{
       popupImageOpen.open(name, link);
-      popupImageOpen.setEventListeners();
     },
     templateElement: '.templateCard'
   });
@@ -47,6 +46,7 @@ const cardList = new Section({
 const newCardPopup = new PopupWithForm({
   handleFormSubmit: (data) => {
     cardList.addItem(createNewCard(data));
+    formCardValidation.cardButtonValidation();
   }
 }, '.popup-card'); 
 
@@ -58,6 +58,7 @@ const userInfoPopup = new PopupWithForm({
 
 newCardPopup.setEventListeners();
 userInfoPopup.setEventListeners();
+popupImageOpen.setEventListeners();
 
 
 function passTheValueUserProfile (data) {
