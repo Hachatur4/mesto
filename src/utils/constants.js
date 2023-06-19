@@ -11,6 +11,8 @@ export const popupCardButton = document.querySelector('.profile__add-button');
 export const profileinputName = document.querySelector('#username-input');
 export const profileInputDescription = document.querySelector('#job-input');
 
+export const avatarImage = document.querySelector('.profile__avatar-image');
+
 export const validationSelector = {
   formSet: '.form__set',
   inputSelector: '.form__input',

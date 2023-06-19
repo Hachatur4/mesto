@@ -7,16 +7,24 @@
   </head>
   <body class="page">
     <header class="header">
-      <img class="header__logo" src="<%=require('./images/logo-header.svg')%>" alt="Логотип" />
+      <img
+        class="header__logo"
+        src="<%=require('./images/logo-header.svg')%>"
+        alt="Логотип"
+      />
     </header>
     <main class="content">
       <section class="profile">
         <div class="profile__content">
-          <img
-            class="profile__avatar"
-            src="<%=require('./images/profile/profile__avatar.jpg')%>"
-            alt="Изображение профиля"
-          />
+          <div class="profile__avatar">
+            <span class="profile__avatar-pencil"></span>
+            <img
+              class="profile__avatar-image"
+              src="<%=require('./images/profile/profile__avatar.jpg')%>"
+              alt="Изображение профиля"
+            />
+          </div>
+          >
           <div class="profile__info">
             <div class="profile__name-edit">
               <h1 class="profile-content profile__name">Жак-Ив Кусто</h1>
@@ -64,12 +72,7 @@
               />
               <span class="form__input-error job-input-error"></span>
             </label>
-            <button
-              type="submit"
-              class="form__submit-button"
-            >
-              Сохранить
-            </button>
+            <button type="submit" class="form__submit-button">Сохранить</button>
           </fieldset>
         </form>
       </div>
@@ -83,7 +86,7 @@
             <label class="form__field">
               <input
                 type="text"
-                name="cardName"
+                name="name"
                 id="name-input"
                 class="form__input form-card__input"
                 placeholder="Название"
@@ -96,7 +99,7 @@
             <label class="form__field">
               <input
                 type="url"
-                name="cardLink"
+                name="link"
                 id="link-input"
                 class="form__input form-card__input"
                 placeholder="Ссылка на картинку"
@@ -104,10 +107,7 @@
               />
               <span class="form__input-error link-input-error"></span>
             </label>
-            <button
-              type="submit"
-              class="form__submit-button form-card-button"
-            >
+            <button type="submit" class="form__submit-button form-card-button">
               Создать
             </button>
           </fieldset>
@@ -125,6 +125,49 @@
         <button type="button" class="popup__close-icon"></button>
       </div>
     </div>
+    <div class="popup popup-changeAvatar">
+      <div class="popup__container">
+        <h3 class="popup__title">Обновить аватар</h3>
+        <button type="button" class="popup__close-icon"></button>
+        <form name="form-avatar" class="form form-avatar" novalidate>
+          <fieldset class="form__set">
+            <label class="form__field">
+              <input
+                type="url"
+                name="avatarLink"
+                id="avatar-input"
+                class="form__input form-avatar__input"
+                placeholder="Ссылка на изображение"
+                required
+              />
+              <span class="form__input-error avatar-input-error"></span>
+            </label>
+            <button
+              type="submit"
+              class="form__submit-button"
+            >
+              Сохранить
+            </button>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+    <div class="popup delete-card">
+      <div class="popup__container">
+        <h3 class="popup__title">Вы уверены ?</h3>
+        <button type="button" class="popup__close-icon"></button>
+        <form name="form-deleteCard" class="form form-deleteCard" novalidate>
+          <fieldset class="form__set">
+            <button
+            type="submit"
+            class="form__submit-button"
+            >
+            Да
+            </button>
+          </fieldset>
+        </form>
+      </div>
+    </div>
     <template id="templateCard" class="templateCard">
       <article class="card">
         <button type="button" class="card__delete"></button>
@@ -135,7 +178,10 @@
         />
         <div class="card__description">
           <h2 class="card__title">Аллея баобабов</h2>
-          <button type="button" class="card__like-button"></button>
+          <div class="card__likeBox">
+            <button type="button" class="card__like-button"></button>
+            <span class="card__numberLikes">0</span>
+          </div>
         </div>
       </article>
     </template>
