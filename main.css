@@ -49,4 +49,5 @@
 .popup__element-image{max-height:75vh;max-width:75vw;-o-object-fit:cover;object-fit:cover}
 .popup__title-image{color:#fff;font-family:Inter,Arial,"Sans-serif";font-size:12px;font-style:normal;font-weight:400;line-height:15px;margin:10px 0 0}
 .popup__close-icon{background-color:transparent;background-image:url(images/popup-close-icon.ad98de32e342afafa118.svg);background-size:cover;border:none;color:inherit;cursor:pointer;font:inherit;height:32px;padding:0;position:absolute;right:-50px;top:-50px;width:32px}.popup__close-icon:hover{opacity:.6}@media screen and (min-width:320px) and (max-width:750px){.popup__close-icon{height:20px;right:0;top:-40px;width:20px}}
+.popup-image{background-color:rgba(0,0,0,.9)}
 
