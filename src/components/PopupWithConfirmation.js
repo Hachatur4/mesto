@@ -6,10 +6,11 @@ export default class PopupWithConfirmation extends Popup {
   }
 
   setEventListeners(){
-    this._selector.addEventListener('submit', (evt)=>{
+    this._formElement.addEventListener('submit', (evt)=>{
       evt.preventDefault();
-      this._handleSubmit()
-      this.close()
+      const submitPromise = Promise.resolve(this._handleSubmit())
+      submitPromise.then(this.close())
+      
     });
     super.setEventListeners();
   }

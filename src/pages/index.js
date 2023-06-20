@@ -17,7 +17,7 @@ import {
   validationSelector,
   avatarImage
 } from "../utils/constants.js";
-
+                                
 const formProfileValidation = new FormValidator(validationSelector, '.form-profile');
 formProfileValidation.enableValidation();
 const formCardValidation = new FormValidator(validationSelector, '.form-card');
@@ -39,18 +39,16 @@ const api = new Api({
   }
 })
 
+let userId = null;
+
 api.getAppInfo()
 .then(([cards, userData])=>{
+  userId = userData._id;
   cardList.renderItems(cards, userData);
+  profileData(userData);
 })
 .catch((err)=> console.log(`catch: ${err}`))
 
-api.getUserInfo()
-  .then((result)=>{
-    profileName.textContent = result.name;
-    profileJob.textContent = result.about;
-  })  
-  .catch((err)=> console.log(`catch: ${err}`))
 
   api.getAvatar()
   .then((result)=>{
@@ -60,97 +58,98 @@ api.getUserInfo()
 
 
   const cardList = new Section({
-    renderer: (cards, userData) => {
-      cardList.addItem(createNewCard(cards, userData));
+    renderer: (cards) => {
+      cardList.addItem(createNewCard(cards, userId));
     }
   }, '.element');
 
 
-  const createNewCard = (cards, userData) => {
-    const card = new Card({
-      cards,
-      userData,
-      handleCardClick,
-      handleDeleteCard,
-      handleApi_idOwner,
-      putAndDeleteLike,
-      templateElement: '.templateCard'
-    });
-    return card.generateCard();
-}
-
-
-function handleDeleteCard (element, cardId){
-  cardDeletePopup.open();
-  cardDeletePopup.setSubmitAction(()=>{
-    api.deleteCard(cardId)
-    .then((result)=>{
-      element.remove()
-    })
-    .catch((err)=> console.log(`catch: ${err}`))
-  })
-}
-
-function handleApi_idOwner(data, allId){
-  api.getUserInfo()
-    .then((result)=>{
-      if (allId === result._id){
-        data.querySelector('.card__delete').classList.remove("card__delete_disable");
-      }else{
-        data.querySelector('.card__delete').classList.add("card__delete_disable");
-      }
-    })
-    .catch((err)=> console.log(`catch: ${err}`))
-}
-
-function handleCardClick(name, link){
-  popupImageOpen.open(name, link);
-}
-
-function putAndDeleteLike (cardId, element, userData, allUsersLiked, numberLikes){
-  const getNumberLike = (result)=>{
-    return numberLikes.textContent = result.likes.length;
-  }
-  const isLikedUser = allUsersLiked.some((user)=>{
-    return userData._id === user._id;
-  })
-    if(isLikedUser){
-      api.deleteLike(cardId)
-      .then((result)=>{
-        getNumberLike(result)
-      element.querySelector('.card__like-button').classList.remove("card__like-button_active")
-      })
-      .catch((err)=> console.log(`catch: ${err}`))
-    } else {
-      api.putLike(cardId)
-      .then((result)=>{
-        getNumberLike(result)
-      element.querySelector('.card__like-button').classList.add("card__like-button_active")
-      })
-      .catch((err)=> console.log(`catch: ${err}`))
-  }
-}
+  const createNewCard = (cards, userId) => { 
+    const card = new Card({ 
+      cards, 
+      userId,
+      handleCardClick, 
+      handleDeleteCard, 
+      handleApi_idOwner, 
+      putAndDeleteLike, 
+      templateElement: '.templateCard' 
+    }); 
+    return card.generateCard(); 
+  } 
 
 const newCardPopup = new PopupWithForm({
   handleFormSubmit: (data, buttonLoader) => {
     api.createCard(data)
     .then((result)=>{
       cardList.newAddItems(createNewCard(result));
-      buttonLoader.textContent = 'Создать'
     })
     .catch((err)=> console.log(`catch: ${err}`))
+    .finally(()=>{
+      buttonLoader.textContent = 'Сохранить'
+    })
     formCardValidation.cardButtonValidation();
   }
 }, '.popup-card'); 
+
+function handleDeleteCard (cardId, cardDelete, event){
+  cardDeletePopup.open();
+  cardDeletePopup.setSubmitAction(()=>{
+    api.deleteCard(cardId)
+    .then((result)=>{
+      cardDelete(event)
+    })
+    .catch((err)=> console.log(`catch: ${err}`))
+  })
+}
+
+function handleApi_idOwner(data, allId, userId){
+    if (allId === userId){
+      data.querySelector('.card__delete').classList.remove("card__delete_disable");
+   }else{
+     data.querySelector('.card__delete').classList.add("card__delete_disable");
+   }
+}
+
+function handleCardClick(name, link){
+  popupImageOpen.open(name, link);
+}
+
+function putAndDeleteLike (cardId, element, userId, allUsersLiked, likeNumber, updateCardLikeNumber){
+  const isLikedUser = allUsersLiked.some((user)=>{
+    return userId === user._id;
+  })
+    if(isLikedUser){
+      api.deleteLike(cardId)
+      .then((result)=>{
+      updateCardLikeNumber(allUsersLiked, likeNumber, result)
+      element.querySelector('.card__like-button').classList.remove("card__like-button_active")
+      })
+      .catch((err)=> console.log(`catch: ${err}`))
+    } else {
+      api.putLike(cardId)
+      .then((result)=>{
+      updateCardLikeNumber(allUsersLiked,likeNumber, result)
+      element.querySelector('.card__like-button').classList.add("card__like-button_active")
+      })
+      .catch((err)=> console.log(`catch: ${err}`))
+  }
+}
+
+const profileData = (userData)=>{
+  profileName.textContent = userData.name;
+  profileJob.textContent = userData.about;
+}
 
 const userInfoPopup = new PopupWithForm({
   handleFormSubmit: (data, buttonLoader) => {
     api.sendUserInfo(data)
     .then((result)=>{
       userInfoProfile.setUserInfo(data);
-      buttonLoader.textContent = 'Сохранить'
     })
     .catch((err)=> console.log(`catch: ${err}`))
+    .finally(()=>{
+      buttonLoader.textContent = 'Сохранить'
+    })
   }
 }, '.popup-profile'); 
 
@@ -159,9 +158,11 @@ const avatarChangePopup = new PopupWithForm({
     api.userAvatar(data)
     .then((result)=>{
       avatarImage.src = data.avatarLink;
-      buttonLoader.textContent = 'Сохранить'
     })
     .catch((err)=> console.log(`catch: ${err}`))
+    .finally(()=>{
+      buttonLoader.textContent = 'Сохранить'
+    })
   }
 }, '.popup-changeAvatar');
 
