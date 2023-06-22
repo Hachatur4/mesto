@@ -5,7 +5,6 @@ class Card {
     userId, 
     handleCardClick, 
     handleDeleteCard,
-    handleApi_idOwner,
     putAndDeleteLike,
     templateElement
     }) {
@@ -20,7 +19,6 @@ class Card {
     this._handleDeleteCard = handleDeleteCard;
     this._templateElement = templateElement;
     this._putAndDeleteLike = putAndDeleteLike;
-    this._idOwner = handleApi_idOwner;
   }
   _getTemplate() {
     const cardElement = document
@@ -28,7 +26,7 @@ class Card {
       .content
       .querySelector('.card')
       .cloneNode(true);
-
+    
     return cardElement;
   }
 
@@ -38,47 +36,58 @@ class Card {
     this._element.querySelector('.card__title').textContent = this._title;
     this._element.querySelector('.card__image').alt = this._alt;
     this._element.querySelector('.card__image').src = this._image;
-    this._idOwner(this._element, this._id, this._userId);
+    this._handleApi_idOwner(this._element, this._id, this._userId);
     this._likeNumber = this._element.querySelector('.card__numberLikes');
-    this._cardLikeNumber()
-    this._cardLikeCheck()
+    this._loadCardLikeNumber()
+    this._checkCardLike()
     return this._element; 
   }
-  _cardLikeNumber(){
+
+  _handleApi_idOwner(data, allId, userId){
+    if (allId === userId){
+      data.querySelector('.card__delete').classList.remove("card__delete_disable");
+   }else{
+     data.querySelector('.card__delete').classList.add("card__delete_disable");
+   }
+  }
+
+  deleteCard(card){
+    card._element.remove()
+  }
+
+  _loadCardLikeNumber(){
     this._likeNumber.textContent = this._carLikedArray.length
   }
 
-  updateCardLikeNumber(allUsersLiked,likeNumber, result){
-      likeNumber.textContent = result.likes.length;
-      allUsersLiked.length = result.likes.length;
-  }
-
-  _cardLikeCheck(){
-    const isLiked = this._carLikedArray.some((user)=>{
-      return this._userId === user._id;
-    })
-    if(isLiked){
+  _checkCardLike(){
+    if(this.checkIsLiked()){
       this._element.querySelector('.card__like-button').classList.add("card__like-button_active")
     }
   }
 
-  cardDelete(event){
-    const button = event.target
-    const cardDelete = button.closest('.card'); 
-    cardDelete.remove() 
+  checkIsLiked(){
+    const isLiked = this._carLikedArray.some((user)=>{
+      return this._userId === user._id;})
+    return isLiked
+  }
+
+  updateCardLikeNumber(result){
+    this._likeNumber.textContent = result.likes.length;
+    this._carLikedArray.length = result.likes.length;
+    this._carLikedArray = result.likes;
   }
 
   _setEventListeners() {
+    this._element.querySelector('.card__like-button').addEventListener('click', () => {
+      this._putAndDeleteLike(this)
+    })
+
     this._element.querySelector('.card__image').addEventListener('click', () => {
       this._handleCardClick(this._title, this._image);
     });
 
-    this._element.querySelector('.card__like-button').addEventListener('click', () => {
-      this._putAndDeleteLike(this._cardId, this._element, this._userId, this._carLikedArray, this._likeNumber, this.updateCardLikeNumber)
-      });
-
-    this._element.querySelector('.card__delete').addEventListener('click', (event)=>{
-      this._handleDeleteCard(this, this.cardDelete, event)
+    this._element.querySelector('.card__delete').addEventListener('click', ()=>{
+      this._handleDeleteCard(this.deleteCard, this)
     });
   };
 };

@@ -1,10 +1,10 @@
 
 
 export default class UserInfo {
-  constructor(elementName, elementInformation) {
+  constructor(elementName, elementInformation, avatarImage) {
     this._elementName = elementName;
     this._elementInformation = elementInformation;
-    this._profileInput = document.querySelectorAll('.profile-content');
+    this._avatarImage = avatarImage;
   }
 
   getUserInfo(){
@@ -17,5 +17,9 @@ export default class UserInfo {
   setUserInfo(formData){
     this._elementName.textContent  = formData.profileName;
     this._elementInformation.textContent = formData.profileJob;
+  }
+
+  setUserAvatar(data){
+    this._avatarImage.src = data.avatarLink;
   }
 }

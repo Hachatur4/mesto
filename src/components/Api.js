@@ -73,17 +73,6 @@ export default class Api {
     .then(res => this._resStatus(res))
   }
 
-  getAvatar(){
-    return fetch(`${this._options.baseUrl}/users/me`, {
-      method: 'GET',
-      headers: {
-        authorization: this._authorization,
-        'Content-Type': this._contentType
-      },
-    })
-    .then(res => this._resStatus(res)) 
-  }
-
   putLike(cardId){
     return fetch(`${this._options.baseUrl}/cards/${cardId}/likes `, {
       method: 'PUT',
@@ -107,7 +96,7 @@ export default class Api {
   }
 
   deleteCard(id){
-    return fetch(`${this._options.baseUrl}/cards/${id._cardId}`, {
+    return fetch(`${this._options.baseUrl}/cards/${id}`, {
       method: 'DELETE',
       headers: {
         authorization: this._authorization,
