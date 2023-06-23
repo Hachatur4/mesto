@@ -27,7 +27,8 @@ export default class UserInfo {
   setApiAvatar(data){
     this._avatarImage.src = data.avatar;
   }
-
+// данный метод не передает даннные в модальное окно а заполняет поля профиля из api 
+// а в модальное окно передается методом getUserInfo в функции passTheValueUserProfile в index.js
   getDataProfile(userData){
     this._elementName.textContent = userData.name;
     this._elementInformation.textContent = userData.about;

@@ -171,6 +171,7 @@ function handlingEventsWhenOpeningProfileForm () {
   formProfileValidation.clearInputError();
   userInfoPopup.open();
   passTheValueUserProfile(userInfoProfile.getUserInfo());
+  console.log(userInfoProfile.getUserInfo())
 }
 
 function handlingEventsWhenOpeningCardForm () {
