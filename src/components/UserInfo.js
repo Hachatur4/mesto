@@ -20,6 +20,16 @@ export default class UserInfo {
   }
 
   setUserAvatar(data){
+    console.log(data)
     this._avatarImage.src = data.avatarLink;
+  }
+
+  setApiAvatar(data){
+    this._avatarImage.src = data.avatar;
+  }
+
+  getDataProfile(userData){
+    this._elementName.textContent = userData.name;
+    this._elementInformation.textContent = userData.about;
   }
 }

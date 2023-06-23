@@ -13,10 +13,6 @@ export default class PopupWithConfirmation extends Popup {
     super.setEventListeners();
   }
 
-  closepPopupSubmit(){
-    this.close()
-  }
-
   setSubmitAction(callBack){
     this._handleSubmit = callBack;
   }

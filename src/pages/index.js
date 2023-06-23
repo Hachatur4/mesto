@@ -29,7 +29,7 @@ const userInfoProfile = new UserInfo(profileName, profileJob, avatarImage);
 const popupImageOpen = new PopupWithImage('.popup-image');
 const cardDeletePopup = new PopupWithConfirmation('.delete-card')
 
-const avatarChange = document.querySelector('.profile__avatar-pencil');
+const avatarClick = document.querySelector('.profile__avatar');
 
 const api = new Api({
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-68',
@@ -46,13 +46,13 @@ api.getAppInfo()
   userId = userData._id;
   cardList.renderItems(cards);
   getDataProfile(userData);
-  getAvatar(userData)
+  setNewAvatar(userData)
 })
 .catch((err)=> console.log(`catch: ${err}`))
 
 
-function getAvatar(userData){
-  avatarImage.src = userData.avatar;
+function setNewAvatar(userData){
+  userInfoProfile.setApiAvatar(userData);
 }
 
   const cardList = new Section({
@@ -75,19 +75,16 @@ function getAvatar(userData){
   } 
 
 const newCardPopup = new PopupWithForm({
-  handleFormSubmit: (data, buttonLoader, popupClose) => {
+  handleFormSubmit: (data, buttonLoader) => {
     api.createCard(data)
     .then((result)=>{
       cardList.newAddItems(createNewCard(result));
-      popupClose._form.reset();
-      popupClose._formElement.classList.remove('popup_opened');
-      
+      newCardPopup.close()
     })
     .catch((err)=> console.log(`catch: ${err}`))
     .finally(()=>{
       buttonLoader.textContent = 'Сохранить'
     })
-    formCardValidation.cardButtonValidation();
   }
 }, '.popup-card'); 
 
@@ -97,7 +94,7 @@ function handleDeleteCard (deleteCard, card){
     api.deleteCard(card._cardId)
     .then((result)=>{
       deleteCard(card)
-      cardDeletePopup.closepPopupSubmit()
+      cardDeletePopup.close()
     })
     .catch((err)=> console.log(`catch: ${err}`))
   })
@@ -126,17 +123,15 @@ function putAndDeleteLike (element) {
 }
 
 const getDataProfile = (userData)=>{
-  profileName.textContent = userData.name;
-  profileJob.textContent = userData.about;
+  userInfoProfile.getDataProfile(userData);
 }
 
 const userInfoPopup = new PopupWithForm({
-  handleFormSubmit: (data, buttonLoader, popupClose) => {
+  handleFormSubmit: (data, buttonLoader) => {
     api.sendUserInfo(data)
     .then((result)=>{
       userInfoProfile.setUserInfo(data);
-      popupClose._form.reset();
-      popupClose._formElement.classList.remove('popup_opened');
+      userInfoPopup.close()
     })
     .catch((err)=> console.log(`catch: ${err}`))
     .finally(()=>{
@@ -146,12 +141,11 @@ const userInfoPopup = new PopupWithForm({
 }, '.popup-profile'); 
 
 const avatarChangePopup = new PopupWithForm({
-  handleFormSubmit: (data, buttonLoader, popupClose) => {
+  handleFormSubmit: (data, buttonLoader) => {
     api.userAvatar(data)
     .then((result)=>{
       userInfoProfile.setUserAvatar(data);
-      popupClose._form.reset();
-      popupClose._formElement.classList.remove('popup_opened');
+      avatarChangePopup.close()
     })
     .catch((err)=> console.log(`catch: ${err}`))
     .finally(()=>{
@@ -182,11 +176,13 @@ function handlingEventsWhenOpeningProfileForm () {
 function handlingEventsWhenOpeningCardForm () {
   formCardValidation.clearInputError();
   newCardPopup.open();
+  formCardValidation.cardButtonValidation();
 }
 
 function openChangeAvatar(){
   formAvatarValidation.clearInputError();
   avatarChangePopup.open();
+  formAvatarValidation.cardButtonValidation()
 }
 
 
@@ -198,6 +194,6 @@ popupCardButton.addEventListener('click', ()=> {
   handlingEventsWhenOpeningCardForm(); 
 });
 
-avatarChange.addEventListener('click', ()=>{
+avatarClick.addEventListener('click', ()=>{
   openChangeAvatar();
 });
